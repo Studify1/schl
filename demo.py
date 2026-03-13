@@ -1,8 +1,32 @@
-from pyscript import document
-print("Hello, World in console!")
-output_div = document.getElementById("textarea")
-output_div.innerText = "Hello, World! from pyscript"
-output_div.style.color = "red"
-output_div.style.fontSize = "24px"
-output_div.style.fontWeight = "bold"
-output_div.style.textAlign = "center"
+from pyscript import display
+
+
+# Display in a specific element by ID.
+display("Hello mada this is my first PyScript!", target="output-div")
+
+# The '#' prefix is optional (and ignored if present).
+display("Hello", target="#output-div")
+
+from pyscript import web
+
+
+# Get an existing select element.
+select = web.page["my-select"]
+
+# Add options.
+select.options.add(value="1", html="Option 1")
+select.options.add(value="2", html="Option 2", selected=True)
+
+# Get the selected option.
+selected = select.options.selected
+print(f"Selected: {selected.value}")
+
+# Iterate over options.
+for option in select.options:
+    print(f"{option.value}: {option.innerHTML}")
+
+# Clear all options.
+select.options.clear()
+
+# Remove specific option by index.
+select.options.remove(0)
